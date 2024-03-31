@@ -1,0 +1,40 @@
+pipeline {
+	agent any
+
+	environment {
+		mavenHome = tool 'apache-maven-3.9.6'
+	}
+
+	tools {
+		jdk 'java-11'
+	}
+
+	stages {
+
+		stage('Build'){
+			steps {
+				script {
+					def mvnHome = tool name: 'apache-maven-3.9.6', type: 'maven'
+					withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+						dir('customer_application') {
+							bat "mvn clean install -DskipTests"
+						}
+					}
+				}
+			}
+		}
+
+		stage('Test'){
+			steps{
+				script {
+					def mvnHome = tool name: 'apache-maven-3.9.6', type: 'maven'
+					withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+						dir('customer_application') {
+							bat "mvn test"
+						}
+					}
+				}
+			}
+		}
+	}
+}
