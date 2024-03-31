@@ -13,13 +13,23 @@ pipeline {
 
 		stage('Build'){
 			steps {
-				bat "mvn clean install -DskipTests"
+				script {
+					def mvnHome = tool name: 'apache-maven-3.9.6', type: 'maven'
+					withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+						bat "mvn clean install -DskipTests"
+					}
+				}
 			}
 		}
 
 		stage('Test'){
 			steps{
-				bat "mvn test"
+				script {
+					def mvnHome = tool name: 'apache-maven-3.9.6', type: 'maven'
+					withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
+						bat "mvn test"
+					}
+				}
 			}
 		}
 	}
