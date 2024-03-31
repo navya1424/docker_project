@@ -16,7 +16,9 @@ pipeline {
 				script {
 					def mvnHome = tool name: 'apache-maven-3.9.6', type: 'maven'
 					withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-						bat "mvn clean install -DskipTests"
+						dir('customer_application') {
+							bat "mvn clean install -DskipTests"
+						}
 					}
 				}
 			}
@@ -27,7 +29,9 @@ pipeline {
 				script {
 					def mvnHome = tool name: 'apache-maven-3.9.6', type: 'maven'
 					withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
-						bat "mvn test"
+						dir('customer_application') {
+							bat "mvn test"
+						}
 					}
 				}
 			}
