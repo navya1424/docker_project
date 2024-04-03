@@ -12,6 +12,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customers-dev")
 public class Customer_Controller {
+    @GetMapping("/status")
+    public String checkApiStatus() {
+        return "The Spring Boot API is working!";
+    }
 //    private final CustomerService customerService;
 
 //    public Customer_Controller(CustomerService customerService) {
@@ -37,13 +41,4 @@ public class Customer_Controller {
 //    public ResponseEntity <Customer> updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
 //        return ResponseEntity.ok(customerService.updateCustomer(customer,id));
 //    }
-
-//    @DeleteMapping("/delete/{id}")
-    @GetMapping("all")
-    public ResponseEntity<String> deleteCustomer(
-//            @PathVariable Long id
-    ){
-//        customerService.deletedById(id);
-        return ResponseEntity.ok().body("Customer deleted successfully");
-    }
 }
