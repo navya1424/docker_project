@@ -1,4 +1,3 @@
 FROM openjdk:17
-EXPOSE 8080
-ADD target/customer-integration.jar customer-integration
-ENTRYPOINT ["java", "-jar", "/customer-integration.jar"]
+COPY target/customer-integration app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
