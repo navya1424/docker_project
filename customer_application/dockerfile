@@ -1,3 +1,4 @@
 FROM openjdk:17
-COPY target/customer-integration.jar customer-integration
+COPY target/customer-integration.jar /app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
+
